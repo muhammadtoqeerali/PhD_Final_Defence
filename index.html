@@ -2785,7 +2785,7 @@
                         </div>
                         
                         <div class="figure-placeholder" style="margin-top: 20px;">
-                            <img src="./annotation-sync.png" alt="LED Synchronization" width="400" height="200">
+                            <img src="./annotation-sync.png" alt="LED Synchronization" width="750" height="950">
                         </div>
                         <div class="figure-caption">Figure 4: Temporal annotation with LED synchronization system.</div>
                     </div>
@@ -2872,23 +2872,24 @@
         </div>
 
         <!-- Slide 13: Dataset Configuration A -->
+        <!-- Slide 13: Dataset Configuration A -->
         <div class="slide">
             <div class="slide-header">
                 <h2>Dataset & Configuration A (CNN Evaluation)</h2>
                 <div class="slide-number">13/32</div>
             </div>
             <div class="slide-content">
-                <div class="highlight-box">
-                    <h3>Configuration A (Controlled Environment Only)</h3>
-                    <div class="bullet-point"><div class="bullet-icon">👥</div><div><strong>61 laboratory participants:</strong> 32 from KFall + 29 from this work</div></div>
-                    <div class="bullet-point"><div class="bullet-icon">📋</div><div>Includes Tasks 01–44; excludes Task 88 construction-site recordings</div></div>
-                    <div class="bullet-point"><div class="bullet-icon">🔄</div><div><strong>5-fold subject-independent cross-validation</strong> for architecture validation</div></div>
-                    <div class="bullet-point"><div class="bullet-icon">⚡</div><div><strong>400 ms windows</strong> with 50% overlap; final 150 ms before impact excluded</div></div>
-                </div>
-                
-                <div style="display: flex; gap: 30px; margin-top: 20px;">
+                <div style="display: flex; gap: 30px;">
                     <div style="flex: 1;">
-                        <h3>Segmentation Results</h3>
+                        <div class="highlight-box">
+                            <h3>Configuration A (Controlled Environment Only)</h3>
+                            <div class="bullet-point"><div class="bullet-icon">👥</div><div><strong>61 laboratory participants:</strong> 32 from KFall + 29 from this work</div></div>
+                            <div class="bullet-point"><div class="bullet-icon">📋</div><div>Includes Tasks 01–44; excludes Task 88 construction-site recordings</div></div>
+                            <div class="bullet-point"><div class="bullet-icon">🔄</div><div><strong>5-fold subject-independent cross-validation</strong> for architecture validation</div></div>
+                            <div class="bullet-point"><div class="bullet-icon">⚡</div><div><strong>400 ms windows</strong> with 50% overlap; final 150 ms before impact excluded</div></div>
+                        </div>
+                        
+                        <h3 style="margin-top: 20px;">Segmentation Results</h3>
                         <table class="comparison-table">
                             <tr><td><strong>Non-falling windows</strong></td><td>242,738 (96.4%)</td></tr>
                             <tr><td><strong>Falling windows</strong></td><td>9,105 (3.6%)</td></tr>
@@ -2898,10 +2899,43 @@
                     </div>
                     
                     <div style="flex: 1;">
-                        <div class="figure-placeholder">
-                            <img src="./config-a.png" alt="Configuration A" width="350" height="200">
+                        <h3>Dataset Configuration Comparison</h3>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Characteristic</th>
+                                <th style="text-align: center;">Config A</th>
+                                <th style="text-align: center;">Config B</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Participants</strong></td>
+                                <td style="text-align: center;"><strong>61</strong></td>
+                                <td style="text-align: center;"><strong>71</strong></td>
+                            </tr>
+                            <tr style="background-color: #e8f5e8;">
+                                <td><strong>Laboratory Data</strong><br><small>(Tasks 01–44)</small></td>
+                                <td style="text-align: center; color: #4caf50; font-size: 1.3em;">✓</td>
+                                <td style="text-align: center; color: #4caf50; font-size: 1.3em;">✓</td>
+                            </tr>
+                            <tr style="background-color: #ffebee;">
+                                <td><strong>Construction Site Data</strong><br><small>(Task 88)</small></td>
+                                <td style="text-align: center; color: #f44336; font-size: 1.3em;">✗</td>
+                                <td style="text-align: center; color: #4caf50; font-size: 1.3em;">✓</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Primary Purpose</strong></td>
+                                <td style="text-align: center;">Architecture validation</td>
+                                <td style="text-align: center;">Realistic evaluation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Used in Chapter</strong></td>
+                                <td style="text-align: center;"><strong>4</strong></td>
+                                <td style="text-align: center;"><strong>5</strong></td>
+                            </tr>
+                        </table>
+                        
+                        <div class="achievement-box" style="margin-top: 15px;">
+                            <p><strong>Config B (Chapter 5):</strong> 61 laboratory participants + 10 construction workers, creating a realistic evaluation scenario with authentic workplace activity.</p>
                         </div>
-                        <div class="figure-caption">Configuration A - Laboratory only dataset for CNN architecture development.</div>
                     </div>
                 </div>
             </div>
