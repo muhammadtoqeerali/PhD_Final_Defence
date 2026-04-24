@@ -2914,29 +2914,93 @@
                 <div class="slide-number">14/32</div>
             </div>
             <div class="slide-content">
-                <div style="display: flex; gap: 30px;">
-                    <div style="flex: 1;">
-                        <h3>CNN Architecture</h3>
-                        <div class="figure-placeholder">
-                            <img src="./cnn-architecture.png" alt="CNN Architecture" width="350" height="300">
+                <div class="highlight-box" style="margin-bottom: 20px;">
+                    <h3>⚡ STM32 Microcontroller Constraints</h3>
+                    <div style="display: flex; justify-content: space-around; margin: 20px 0;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2em; color: #d32f2f;">⚠️</div>
+                            <div><strong>Flash Memory</strong><br>&lt; 256KB limit</div>
                         </div>
-                        <div class="figure-caption">Three-branch processing: Accelerometer, gyroscope, Euler angles → separate Conv+MaxPool → Feature Concatenation → Dense layers (64, 32 neurons, ReLU) → Sigmoid output.</div>
-                    </div>
-                    
-                    <div style="flex: 1;">
-                        <h3>Timing Budget</h3>
-                        <div class="highlight-box">
-                            <p><strong>400 ms detection windows</strong> with 50% overlap provide safety margin.</p>
-                            <div class="bullet-point"><div class="bullet-icon">1</div><div><strong>Input:</strong> 400ms segments → 40×9 matrix</div></div>
-                            <div class="bullet-point"><div class="bullet-icon">2</div><div><strong>Three-Branch:</strong> Acc, gyro, Euler → Conv+MaxPool</div></div>
-                            <div class="bullet-point"><div class="bullet-icon">3</div><div><strong>Concatenation:</strong> Merged → Dense (64, 32 neurons, ReLU)</div></div>
-                            <div class="bullet-point"><div class="bullet-icon">4</div><div><strong>Output:</strong> Sigmoid → Activity (0) vs Falling (1)</div></div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2em; color: #d32f2f;">⚠️</div>
+                            <div><strong>RAM Usage</strong><br>&lt; 256KB limit</div>
                         </div>
-                        
-                        <div class="achievement-box" style="margin-top: 15px;">
-                            <p><strong>Why this model fits embedded hardware:</strong> Parallel sensor processing, short windows, and post-training INT8 quantization keep memory and latency under control.</p>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2em; color: #d32f2f;">⚠️</div>
+                            <div><strong>Processing Speed</strong><br>&lt; 10ms inference</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2em; color: #d32f2f;">⚠️</div>
+                            <div><strong>Power Consumption</strong><br>Battery operation</div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Detailed CNN Architecture Table (from original HTML) -->
+                <table class="comparison-table">
+                    <tr>
+                        <th>Layer Type</th>
+                        <th>Configuration</th>
+                        <th>Input → Output</th>
+                        <th>Parameters</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr style="background-color: #e8f4f8;">
+                        <td><strong>Input Layer</strong></td>
+                        <td>[40 × 6] IMU windows</td>
+                        <td>Raw sensor data</td>
+                        <td>0</td>
+                        <td>400ms 6-channel input</td>
+                    </tr>
+                    <tr style="background-color: #f3e5f5;">
+                        <td><strong>Conv1D Layer 1</strong></td>
+                        <td>64 filters, kernel=4</td>
+                        <td>[40×6] → [27×64]</td>
+                        <td>1,600</td>
+                        <td>Feature extraction</td>
+                    </tr>
+                    <tr style="background-color: #e8f5e8;">
+                        <td><strong>MaxPool1D + Dropout</strong></td>
+                        <td>Pool=2, dropout=0.1</td>
+                        <td>[27×64] → [13×64]</td>
+                        <td>0</td>
+                        <td>Dimensionality reduction</td>
+                    </tr>
+                    <tr style="background-color: #fff3e0;">
+                        <td><strong>Conv1D Layer 2</strong></td>
+                        <td>64 filters, kernel=4</td>
+                        <td>[13×64] → [10×64]</td>
+                        <td>16,384</td>
+                        <td>Higher-level features</td>
+                    </tr>
+                    <tr style="background-color: #e3f2fd;">
+                        <td><strong>MaxPool1D + Dropout</strong></td>
+                        <td>Pool=2, dropout=0.4</td>
+                        <td>[10×64] → [5×64]</td>
+                        <td>0</td>
+                        <td>Final dimension reduction</td>
+                    </tr>
+                    <tr style="background-color: #f3e5f5;">
+                        <td><strong>Dense Layer</strong></td>
+                        <td>320→128 with PReLU</td>
+                        <td>[320] → [128]</td>
+                        <td>41,088</td>
+                        <td>Classification preparation</td>
+                    </tr>
+                    <tr style="background-color: #e8f5e8;">
+                        <td><strong>Output Layer</strong></td>
+                        <td>128→2 with Softmax</td>
+                        <td>[128] → [2]</td>
+                        <td>258</td>
+                        <td>Binary fall/activity</td>
+                    </tr>
+                </table>
+
+                <div style="display: flex; justify-content: space-around; margin: 30px 0;">
+                    <div class="performance-metric" style="background: linear-gradient(135deg, #4caf50, #2e7d32);">67.03 KB Flash</div>
+                    <div class="performance-metric" style="background: linear-gradient(135deg, #2196f3, #1565c0);">16.87 KB RAM</div>
+                    <div class="performance-metric" style="background: linear-gradient(135deg, #ff9800, #f57c00);">4ms ± 3ms Inference</div>
+                    <div class="performance-metric" style="background: linear-gradient(135deg, #9c27b0, #6a1b9a);">59,330 Total Params</div>
                 </div>
             </div>
         </div>
