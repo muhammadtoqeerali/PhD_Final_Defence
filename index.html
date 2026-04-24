@@ -3073,6 +3073,7 @@
         </div>
 
         <!-- Slide 16: Results & Embedded Validation -->
+        <!-- Slide 16: Results & Embedded Validation -->
         <div class="slide">
             <div class="slide-header">
                 <h2>Contribution 2 Results: Embedded CNN Validation</h2>
@@ -3106,10 +3107,47 @@
                     <tr style="background-color: #fff3e0;"><td><strong>Event-level false positives</strong></td><td><strong>2.04%</strong></td></tr>
                 </table>
                 
-                <div class="figure-placeholder">
-                    <img src="./quantization-impact.png" alt="Quantization Impact" width="600" height="200">
-                </div>
-                <div class="figure-caption">Figure 7: Impact of INT8 quantization on classification performance (Configuration A).</div>
+                <!-- Quantization impact table replacing the image -->
+                <h3 style="margin-top: 20px;">Impact of INT8 Quantization</h3>
+                <table class="comparison-table" style="margin: 20px 0;">
+                    <tr>
+                        <th>Metric</th>
+                        <th>Floating-Point (FP32)</th>
+                        <th>INT8 Quantized</th>
+                        <th>Impact</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Model Size</strong></td>
+                        <td>268.12 KB</td>
+                        <td><strong>67.03 KB</strong></td>
+                        <td style="color: #4caf50;">↓ 75%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RAM Usage</strong></td>
+                        <td>~50 KB</td>
+                        <td><strong>16.87 KB</strong></td>
+                        <td style="color: #4caf50;">↓ 66%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inference Time</strong></td>
+                        <td>~6 ms</td>
+                        <td><strong>4 ms</strong></td>
+                        <td style="color: #4caf50;">↓ 33%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F1-Score</strong></td>
+                        <td>86.69%</td>
+                        <td><strong>86.52%</strong></td>
+                        <td style="color: #ff9800;">−0.17%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accuracy</strong></td>
+                        <td>98.28%</td>
+                        <td><strong>98.21%</strong></td>
+                        <td style="color: #ff9800;">−0.07%</td>
+                    </tr>
+                </table>
+                <div class="figure-caption">Table: Impact of INT8 quantization – minimal accuracy loss for major resource savings.</div>
                 
                 <div class="highlight-box" style="background: #fff3e0;">
                     <h3>⚠️ Transition to Next Contribution</h3>
