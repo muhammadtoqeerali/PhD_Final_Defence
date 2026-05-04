@@ -2221,6 +2221,13 @@
             color: #2c5aa0;
             margin-bottom: 10px;
         }
+        html {
+                font-size: 18px;   /* default is 16px; adjust this value to scale everything */
+              }
+       .slide {
+                font-size: 110%;   /* try 110%, 115%, 120% etc. */
+               } 
+
     </style>
 </head>
 <body>
@@ -2275,11 +2282,14 @@
                 </div>
                 
                 <div style="position: absolute; bottom: 30px; left: 0; right: 0; text-align: center; padding: 20px; border-top: 2px solid #e0e0e0; background: linear-gradient(to top, #ffffff, transparent);">
-                    <div style="font-size: 1.1em; color: #2c5aa0; font-weight: 700; margin-bottom: 5px;">
+                    <div style="font-size: 2.1em; color: #2c5aa0; font-weight: 700; margin-bottom: 5px;">
                         UNIVERSITÀ DI VERONA
                     </div>
-                    <div style="font-size: 0.9em; color: #666;">
-                        Department of Computer Science | PhD Program XXXVIII Cycle (2022-2025)
+                    <div style="font-size: 1.2em; color: #666;">
+                         Department of Engineering for Innovation Medicine
+                    </div>
+                    <div style="font-size: 1.2em; color: #888; margin-top: 3px;">
+                         PhD Program in Computer Science | Academic Year XXXVIII Cycle (2022-2025)
                     </div>
                 </div>
             </div>
@@ -2691,7 +2701,7 @@
                 </div>
                 
                 <div class="figure-placeholder" style="margin-top: 20px;">
-                    <img src="./dataset-collection.png" alt="Data Collection Process" width="700" height="200">
+                    <img src="./dataset-collection.png" alt="Data Collection Process" width="1050" height="1050">
                 </div>
                 <div class="figure-caption">Figure 3: Laboratory and construction site data collection with LED synchronization system.</div>
             </div>
@@ -2793,42 +2803,90 @@
             </div>
         </div>
 
-        <!-- Slide 11: Dataset Collection Video Demo -->
+        <!-- Slide 11: Dataset Collection Videos -->
         <div class="slide">
             <div class="slide-header">
-                <h2>Dataset Collection: Video Demonstration</h2>
+                <h2>Dataset Collection: Video Demonstrations</h2>
                 <div class="slide-number">11/32</div>
             </div>
             <div class="slide-content">
-                <div class="highlight-box" style="text-align: center; margin-bottom: 20px;">
-                    <h3>📽️ Laboratory Experimental Setup & Data Collection Process</h3>
-                </div>
-                
-                <div class="video-container">
-                    <video 
-                        id="datasetVideo" 
-                        controls 
-                        style="width: 100%; height: auto; display: block;"
-                        poster="./dataset-thumbnail.jpg"
-                        preload="metadata"
-                    >
-                        <source src="./dataset-collection.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    
-                    <div class="custom-play-button" onclick="document.getElementById('datasetVideo').play(); this.style.display='none';">
-                        <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
+                <p style="text-align: center; margin-bottom: 20px;"> Laboratory Experimental Setup & Data Collection Process</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <!-- Video 1 -->
+                    <div class="video-container" style="max-width: none; width: 100%;">
+                        <video 
+                            id="mediaVideo1" 
+                            controls 
+                            style="width: 100%; height: auto; display: block;"
+                            poster="./Media1-poster.jpg"
+                            preload="metadata"
+                        >
+                            <source src="./Media1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="custom-play-button" onclick="document.getElementById('mediaVideo1').play(); this.style.display='none';">
+                            <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
+                        </div>
                     </div>
-                    
-                    <button onclick="document.getElementById('datasetVideo').requestFullscreen()" class="fullscreen-btn">⛶ Fullscreen</button>
-                </div>
-                
-                <div class="achievement-box" style="margin-top: 20px;">
-                    <h4>Video Content Includes:</h4>
-                    <div class="bullet-point"><div class="bullet-icon">✓</div><div>Laboratory experimental setup and safety measures</div></div>
-                    <div class="bullet-point"><div class="bullet-icon">✓</div><div>Participants performing ADLs and fall simulations</div></div>
-                    <div class="bullet-point"><div class="bullet-icon">✓</div><div>Elevation fall scenarios (ladder, scaffold)</div></div>
-                    <div class="bullet-point"><div class="bullet-icon">✓</div><div>LED synchronization system in action</div></div>
+
+                    <!-- Video 2 -->
+                    <div class="video-container" style="max-width: none; width: 100%;">
+                        <video 
+                            id="mediaVideo2" 
+                            controls 
+                            style="width: 100%; height: auto; display: block;"
+                            poster="./Media2-poster.jpg"
+                            preload="metadata"
+                        >
+                            <source src="./Media2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="custom-play-button" onclick="document.getElementById('mediaVideo2').play(); this.style.display='none';">
+                            <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-container" style="max-width: none; width: 100%;">
+                        <video 
+                            id="mediaVideo3" 
+                            controls 
+                            style="width: 100%; height: auto; display: block;"
+                            poster="./Media3-poster.jpg"
+                            preload="metadata"
+                        >
+                            <source src="./Media3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <div class="custom-play-button" onclick="document.getElementById('mediaVideo3').play(); this.style.display='none';">
+                            <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Video 4 -->
+                    <div class="video-container" style="max-width: none; width: 100%;">
+                        <video 
+                            id="mediaVideo4" 
+                            controls 
+                            style="width: 100%; height: auto; display: block;"
+                            poster="./Media4-poster.jpg"
+                            preload="metadata"
+                        >
+                            <source src="./Media4.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="custom-play-button" onclick="document.getElementById('mediaVideo4').play(); this.style.display='none';">
+                            <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
+                        </div>
+                    </div>
+                        <div class="achievement-box" style="margin-top: 20px;">
+                        <h4>Video Content Includes:</h4>
+                        <div class="bullet-point"><div class="bullet-icon">✓</div><div>Laboratory experimental setup and safety measures</div></div>
+                        <div class="bullet-point"><div class="bullet-icon">✓</div><div>Participants performing ADLs and fall simulations</div></div>
+                        <div class="bullet-point"><div class="bullet-icon">✓</div><div>Elevation fall scenarios (ladder, scaffold)</div></div>
+                        <div class="bullet-point"><div class="bullet-icon">✓</div><div>LED synchronization system in action</div></div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -2871,7 +2929,6 @@
             </div>
         </div>
 
-        <!-- Slide 13: Dataset Configuration A -->
         <!-- Slide 13: Dataset Configuration A -->
         <div class="slide">
             <div class="slide-header">
@@ -3047,7 +3104,7 @@
             </div>
             <div class="slide-content">
                 <div class="figure-placeholder">
-                    <img src="./AdBAN.jpg" alt="Methodology Framework" width="700" height="350">
+                    <img src="./AdBAN.jpg" alt="Methodology Framework" width="1350" height="1350">
                 </div>
                 <div class="figure-caption">Figure 6: Complete methodology from data acquisition through preprocessing, CNN training and testing, to optimization and deployment on STM32 microcontrollers.</div>
                 
@@ -3072,7 +3129,6 @@
             </div>
         </div>
 
-        <!-- Slide 16: Results & Embedded Validation -->
         <!-- Slide 16: Results & Embedded Validation -->
         <div class="slide">
             <div class="slide-header">
@@ -3201,7 +3257,7 @@
             </div>
             <div class="slide-content">
                 <div class="figure-placeholder">
-                    <img src="./meth.jpg" alt="Advanced Fall Detection Pipeline" width="750" height="350">
+                    <img src="./methodology_overview_v4.png" alt="Advanced Fall Detection Pipeline" width="1350" height="1350">
                 </div>
                 <div class="figure-caption">Figure 8: Advanced methodology pipeline showing: Data Acquisition → Preprocessing → Data Augmentation (VAE, GAN, VAE-GAN) → AI Model Training (CNN + Event-Level Random Forest) → Model Optimization (Quantization) → Deployment on STM32/Smart Safety Jacket.</div>
                 
@@ -3471,8 +3527,8 @@
                 <div style="display: flex; gap: 20px;">
                     <div style="flex: 1;">
                         <div class="figure-placeholder">
-                            <img src="./bar_Accuracy.png" alt="Accuracy Analysis" width="48%" style="display: inline-block;">
-                            <img src="./bar_Misclasification.png" alt="Misclassification" width="48%" style="display: inline-block; margin-left: 2%;">
+                            <img src="./bar_Accuracy.png" alt="Accuracy Analysis" width="78%" style="display: inline-block;">
+                            <img src="./bar_Misclasification.png" alt="Misclassification" width="78%" style="display: inline-block; margin-left: 2%;">
                         </div>
                         <div class="figure-caption">Accuracy and misclassification by augmentation type and class.</div>
                     </div>
@@ -3586,7 +3642,7 @@
                         poster="./jacket-thumbnail.jpg"
                         preload="metadata"
                     >
-                        <source src="./jacket-demo.mp4" type="video/mp4">
+                        <source src="./documentry.MP4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     
@@ -3759,7 +3815,7 @@
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
                     <div style="background: linear-gradient(135deg, #e8f5e8, #c8e6c9); border: 2px solid #4caf50; border-radius: 15px; padding: 18px;">
                         <h3 style="color: #2e7d32;">🏥 Population Diversity</h3>
-                        <p>Validation with elderly populations and diverse deployment contexts (healthcare, industrial, sports).</p>
+                        <p>Validation with elderly populations with additional dataset and diverse deployment contexts (healthcare, industrial, sports).</p>
                     </div>
                     <div style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); border: 2px solid #2196f3; border-radius: 15px; padding: 18px;">
                         <h3 style="color: #1565c0;">🎯 Rare Event Categories</h3>
@@ -3896,7 +3952,6 @@
                         <strong>Questions & Discussion</strong><br>
                         Muhammad Toqeer Ali | PhD Candidate<br>
                         Università di Verona | Department of Computer Science<br>
-                        Dataset Available: zenodo.org/record/18346755
                     </p>
                 </div>
             </div>
@@ -3912,6 +3967,64 @@
     </div>
 
     <script>
+
+            document.addEventListener('keydown', function(e) {
+            // Ignore if user is typing in an input (if any)
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            switch(e.key) {
+                // Next slide
+                case 'ArrowRight':
+                case ' ':
+                case 'PageDown':
+                case 'n':
+                case 'N':
+                case 'Enter':
+                    e.preventDefault();
+                    changeSlide(1);
+                    break;
+
+                // Previous slide
+                case 'ArrowLeft':
+                case 'PageUp':
+                case 'p':
+                case 'P':
+                case 'Backspace':
+                    e.preventDefault();
+                    changeSlide(-1);
+                    break;
+
+                // Go to first slide
+                case 'Home':
+                    e.preventDefault();
+                    currentSlideIndex = 0;
+                    updateSlideDisplay();
+                    break;
+
+                // Go to last slide
+                case 'End':
+                    e.preventDefault();
+                    currentSlideIndex = totalSlides - 1;
+                    updateSlideDisplay();
+                    break;
+
+                // Toggle fullscreen
+                case 'f':
+                case 'F':
+                case 'F5':
+                    e.preventDefault();
+                    toggleFullscreen();
+                    break;
+
+                // Toggle black screen
+                case 'b':
+                case 'B':
+                case '.':
+                    e.preventDefault();
+                    toggleBlackScreen();
+                    break;
+            }
+        });
         // Global variables
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
@@ -3945,45 +4058,72 @@
             updateMethodologyIndicator();
         }
     
+        // ------- Fullscreen auto‑hide logic -------
+
+        let navigationTimeout;          // holds the 2-second hide timer
+        const navigation = document.querySelector('.navigation');
+        const slideIndicator = document.querySelector('.slide-indicator');
+
+        function showNavigation() {
+            if (navigation) navigation.style.opacity = '1';
+            if (slideIndicator) slideIndicator.style.opacity = '1';
+        }
+
+        function hideNavigation() {
+            if (navigation) navigation.style.opacity = '0';
+            if (slideIndicator) slideIndicator.style.opacity = '0';
+        }
+
+        // Reset the timer and show the bar (called on mouse move)
+        function resetNavigationTimer() {
+            showNavigation();
+            clearTimeout(navigationTimeout);
+            // Only auto-hide again if we are still in fullscreen
+            if (document.fullscreenElement) {
+                navigationTimeout = setTimeout(hideNavigation, 2000);
+            }
+        }
+
+        // Called when entering fullscreen
+        function startFullscreenAutoHide() {
+            // Show bar immediately
+            showNavigation();
+            // Start the 2‑second countdown
+            clearTimeout(navigationTimeout);
+            navigationTimeout = setTimeout(hideNavigation, 2000);
+        }
+
+        // Called when exiting fullscreen
+        function stopFullscreenAutoHide() {
+            clearTimeout(navigationTimeout);
+            showNavigation();   // ensure buttons are visible
+        }
+
+        // Toggle fullscreen
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen();
-                document.body.classList.add('presentation-mode');
+                // We will start the auto‑hide inside the change event
             } else {
                 document.exitFullscreen();
+            }
+        }
+
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (document.fullscreenElement) {
+                document.body.classList.add('presentation-mode');
+                startFullscreenAutoHide();
+            } else {
                 document.body.classList.remove('presentation-mode');
-            }
-        }
-    
-        // Methodology indicator (simplified, keeps original behavior)
-        let methodologyTimeout = null;
-        function updateMethodologyIndicator() {
-            const floatingMethodology = document.getElementById('floatingMethodology');
-            if (!floatingMethodology) return;
-            if (methodologyTimeout) clearTimeout(methodologyTimeout);
-            const activeSlide = slides[currentSlideIndex];
-            if (activeSlide) {
-                const methodologyStage = activeSlide.getAttribute('data-methodology-stage');
-                if (methodologyStage) {
-                    floatingMethodology.classList.add('visible');
-                    const miniSteps = floatingMethodology.querySelectorAll('.methodology-mini-step');
-                    miniSteps.forEach(step => {
-                        step.classList.toggle('active', step.getAttribute('data-stage') === methodologyStage);
-                    });
-                    methodologyTimeout = setTimeout(() => { floatingMethodology.classList.remove('visible'); }, 3000);
-                } else {
-                    floatingMethodology.classList.remove('visible');
-                }
-            }
-        }
-    
-        document.addEventListener('keydown', function(e) {
-            switch(e.key) {
-                case 'ArrowRight': case ' ': e.preventDefault(); changeSlide(1); break;
-                case 'ArrowLeft': e.preventDefault(); changeSlide(-1); break;
-                case 'f': case 'F11': e.preventDefault(); toggleFullscreen(); break;
+                stopFullscreenAutoHide();
             }
         });
+
+        // Mouse / keyboard activity resets the timer
+        document.addEventListener('mousemove', resetNavigationTimer);
+        document.addEventListener('keydown', resetNavigationTimer);
+        document.addEventListener('touchstart', resetNavigationTimer, { passive: true });
     
         // Story animation (Random Forest interactive slide)
         let currentStep = 0, storyRunning = false;
@@ -4272,6 +4412,25 @@
             document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`[data-method="${currentMethod}"]`).classList.add('active');
         }
+           function toggleBlackScreen() {
+                const bs = document.getElementById('blackScreen');
+                if (bs.style.display === 'none' || bs.style.display === '') {
+                    bs.style.display = 'block';
+                } else {
+                    bs.style.display = 'none';
+                }
+        }
     </script>
+    <div id="blackScreen" style="
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: black;
+        z-index: 10000;
+        display: none;
+        cursor: pointer;
+        " onclick="toggleBlackScreen()">
+   </div>
+
 </body>
 </html>
