@@ -3966,65 +3966,8 @@
         <button class="nav-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
     </div>
 
+   
     <script>
-
-            document.addEventListener('keydown', function(e) {
-            // Ignore if user is typing in an input (if any)
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-            switch(e.key) {
-                // Next slide
-                case 'ArrowRight':
-                case ' ':
-                case 'PageDown':
-                case 'n':
-                case 'N':
-                case 'Enter':
-                    e.preventDefault();
-                    changeSlide(1);
-                    break;
-
-                // Previous slide
-                case 'ArrowLeft':
-                case 'PageUp':
-                case 'p':
-                case 'P':
-                case 'Backspace':
-                    e.preventDefault();
-                    changeSlide(-1);
-                    break;
-
-                // Go to first slide
-                case 'Home':
-                    e.preventDefault();
-                    currentSlideIndex = 0;
-                    updateSlideDisplay();
-                    break;
-
-                // Go to last slide
-                case 'End':
-                    e.preventDefault();
-                    currentSlideIndex = totalSlides - 1;
-                    updateSlideDisplay();
-                    break;
-
-                // Toggle fullscreen
-                case 'f':
-                case 'F':
-                case 'F5':
-                    e.preventDefault();
-                    toggleFullscreen();
-                    break;
-
-                // Toggle black screen
-                case 'b':
-                case 'B':
-                case '.':
-                    e.preventDefault();
-                    toggleBlackScreen();
-                    break;
-            }
-        });
         // Global variables
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
@@ -4058,72 +4001,45 @@
             updateMethodologyIndicator();
         }
     
-        // ------- Fullscreen auto‑hide logic -------
-
-        let navigationTimeout;          // holds the 2-second hide timer
-        const navigation = document.querySelector('.navigation');
-        const slideIndicator = document.querySelector('.slide-indicator');
-
-        function showNavigation() {
-            if (navigation) navigation.style.opacity = '1';
-            if (slideIndicator) slideIndicator.style.opacity = '1';
-        }
-
-        function hideNavigation() {
-            if (navigation) navigation.style.opacity = '0';
-            if (slideIndicator) slideIndicator.style.opacity = '0';
-        }
-
-        // Reset the timer and show the bar (called on mouse move)
-        function resetNavigationTimer() {
-            showNavigation();
-            clearTimeout(navigationTimeout);
-            // Only auto-hide again if we are still in fullscreen
-            if (document.fullscreenElement) {
-                navigationTimeout = setTimeout(hideNavigation, 2000);
-            }
-        }
-
-        // Called when entering fullscreen
-        function startFullscreenAutoHide() {
-            // Show bar immediately
-            showNavigation();
-            // Start the 2‑second countdown
-            clearTimeout(navigationTimeout);
-            navigationTimeout = setTimeout(hideNavigation, 2000);
-        }
-
-        // Called when exiting fullscreen
-        function stopFullscreenAutoHide() {
-            clearTimeout(navigationTimeout);
-            showNavigation();   // ensure buttons are visible
-        }
-
-        // Toggle fullscreen
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen();
-                // We will start the auto‑hide inside the change event
+                document.body.classList.add('presentation-mode');
             } else {
                 document.exitFullscreen();
+                document.body.classList.remove('presentation-mode');
             }
         }
-
-        // Listen for fullscreen changes
-        document.addEventListener('fullscreenchange', function() {
-            if (document.fullscreenElement) {
-                document.body.classList.add('presentation-mode');
-                startFullscreenAutoHide();
-            } else {
-                document.body.classList.remove('presentation-mode');
-                stopFullscreenAutoHide();
+    
+        // Methodology indicator (simplified, keeps original behavior)
+        let methodologyTimeout = null;
+        function updateMethodologyIndicator() {
+            const floatingMethodology = document.getElementById('floatingMethodology');
+            if (!floatingMethodology) return;
+            if (methodologyTimeout) clearTimeout(methodologyTimeout);
+            const activeSlide = slides[currentSlideIndex];
+            if (activeSlide) {
+                const methodologyStage = activeSlide.getAttribute('data-methodology-stage');
+                if (methodologyStage) {
+                    floatingMethodology.classList.add('visible');
+                    const miniSteps = floatingMethodology.querySelectorAll('.methodology-mini-step');
+                    miniSteps.forEach(step => {
+                        step.classList.toggle('active', step.getAttribute('data-stage') === methodologyStage);
+                    });
+                    methodologyTimeout = setTimeout(() => { floatingMethodology.classList.remove('visible'); }, 3000);
+                } else {
+                    floatingMethodology.classList.remove('visible');
+                }
+            }
+        }
+    
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight': case ' ': e.preventDefault(); changeSlide(1); break;
+                case 'ArrowLeft': e.preventDefault(); changeSlide(-1); break;
+                case 'f': case 'F11': e.preventDefault(); toggleFullscreen(); break;
             }
         });
-
-        // Mouse / keyboard activity resets the timer
-        document.addEventListener('mousemove', resetNavigationTimer);
-        document.addEventListener('keydown', resetNavigationTimer);
-        document.addEventListener('touchstart', resetNavigationTimer, { passive: true });
     
         // Story animation (Random Forest interactive slide)
         let currentStep = 0, storyRunning = false;
@@ -4412,25 +4328,6 @@
             document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`[data-method="${currentMethod}"]`).classList.add('active');
         }
-           function toggleBlackScreen() {
-                const bs = document.getElementById('blackScreen');
-                if (bs.style.display === 'none' || bs.style.display === '') {
-                    bs.style.display = 'block';
-                } else {
-                    bs.style.display = 'none';
-                }
-        }
     </script>
-    <div id="blackScreen" style="
-        position: fixed;
-        top: 0; left: 0;
-        width: 100vw; height: 100vh;
-        background: black;
-        z-index: 10000;
-        display: none;
-        cursor: pointer;
-        " onclick="toggleBlackScreen()">
-   </div>
-
 </body>
 </html>
