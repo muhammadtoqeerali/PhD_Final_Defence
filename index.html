@@ -2228,6 +2228,39 @@
                 font-size: 110%;   /* try 110%, 115%, 120% etc. */
                } 
 
+                /* Celebration animations */
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            top: -20px;
+            animation: confettiFall var(--fall-duration) linear forwards;
+            background: var(--confetti-color, #f00);
+        }
     </style>
 </head>
 <body>
@@ -3956,7 +3989,32 @@
                 </div>
             </div>
         </div>
-
+        <!-- Slide 33: Celebration -->
+        <div class="slide" id="celebrationSlide">
+            <div class="slide-header">
+                <h2>🎓</h2>
+                <div class="slide-number">33/33</div>
+            </div>
+            <div class="slide-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; text-align: center;">
+                <div id="celebrationStage">
+                    <h2 style="margin-bottom: 30px;">Muhammad Toqeer Ali</h2>
+                    <div class="progress-container" style="width: 400px; max-width: 80%; margin: 0 auto 30px;">
+                        <div class="progress-bar" style="height: 30px; border-radius: 15px; background: #e0e0e0;">
+                            <div class="progress-fill" id="celebrationProgressFill" style="width: 0%; height: 100%; background: linear-gradient(90deg, #2c5aa0, #764ba2); border-radius: 15px; transition: width 0.1s linear;"></div>
+                        </div>
+                    </div>
+                    <div id="celebrationPercent" style="font-size: 3.5em; font-weight: bold; color: #2c5aa0;">0%</div>
+                    <p style="margin-top: 30px; color: #666; font-size: 1.2em;">Loading your PhD success...</p>
+                </div>
+                <div id="celebrationFinal" style="display: none;">
+                    <h1 style="font-size: 4em; background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; animation: bounceIn 1s ease;">🎉 Congratulations! 🎉</h1>
+                    <p style="font-size: 2.2em; color: #2c5aa0; font-weight: bold;">Dr. Muhammad Toqeer Ali</p>
+                    <p style="font-size: 1.4em; color: #444; margin-top: 10px;">PhD Thesis Defense — XXXVIII Cycle</p>
+                    <p style="font-size: 1.1em; color: #666; margin-top: 20px;">Università di Verona</p>
+                    <div class="confetti-container" id="confettiContainer"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Navigation Controls -->
@@ -3999,6 +4057,7 @@
                 setTimeout(() => { slideContent.style.animation = ''; }, 10);
             }
             updateMethodologyIndicator();
+            checkCelebrationSlide();
         }
                 
             // ------- Fullscreen auto‑hide logic -------
@@ -4442,6 +4501,59 @@
                     bs.style.display = 'none';
                 }
             }
+                function checkCelebrationSlide() {
+            if (slides[currentSlideIndex].id === 'celebrationSlide') {
+                startCelebrationAnimation();
+            } else {
+                // Reset if leaving the slide
+                document.getElementById('celebrationProgressFill').style.width = '0%';
+                document.getElementById('celebrationPercent').textContent = '0%';
+                document.getElementById('celebrationStage').style.display = 'block';
+                document.getElementById('celebrationFinal').style.display = 'none';
+                document.getElementById('confettiContainer').innerHTML = '';
+            }
+        }
+                function startCelebrationAnimation() {
+            const progressFill = document.getElementById('celebrationProgressFill');
+            const percentText = document.getElementById('celebrationPercent');
+            let progress = 0;
+            const duration = 3000; // 3 seconds
+            const interval = 30;   // updates every 30ms
+            const increment = 100 / (duration / interval);
+            
+            const timer = setInterval(() => {
+                progress += increment;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(timer);
+                    progressFill.style.width = '100%';
+                    percentText.textContent = '100%';
+                    setTimeout(() => {
+                        document.getElementById('celebrationStage').style.display = 'none';
+                        document.getElementById('celebrationFinal').style.display = 'block';
+                        spawnConfetti();
+                    }, 500);
+                } else {
+                    progressFill.style.width = progress + '%';
+                    percentText.textContent = Math.floor(progress) + '%';
+                }
+            }, interval);
+        }
+        
+        function spawnConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd', '#01a3a4', '#f368e0'];
+            for (let i = 0; i < 100; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.setProperty('--confetti-color', colors[Math.floor(Math.random() * colors.length)]);
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                piece.style.animationDelay = Math.random() * 0.5 + 's';
+                container.appendChild(piece);
+                setTimeout(() => piece.remove(), 5000);
+            }
+        }
     </script>
     <div id="blackScreen" style="
     position: fixed;
